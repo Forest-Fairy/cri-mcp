@@ -15,7 +15,8 @@
     <description>Client Responsibility Isolation(A MCP Application Architecture)</description>
 
     <properties>
-        <revision>1.0-SNAPSHOT</revision>
+        <mcp.version>0.8.1</mcp.version>
+        <revision>${mcp.version}</revision>
     </properties>
 
 </project>
