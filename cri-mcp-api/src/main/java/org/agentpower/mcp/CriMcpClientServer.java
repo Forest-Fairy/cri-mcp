@@ -1,4 +1,8 @@
 package org.agentpower.mcp;
 
-public interface CriMcpClientServer {
+import io.modelcontextprotocol.spec.McpClientTransport;
+
+public interface CriMcpClientServer extends McpClientTransport {
+
+
 }
