@@ -9,16 +9,9 @@
         <version>${revision}</version>
     </parent>
 
-    <artifactId>cri-mcp-server</artifactId>
+    <artifactId>cri-mcp-common</artifactId>
 
     <properties>
     </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.agentpower</groupId>
-            <artifactId>cri-mcp-api</artifactId>
-        </dependency>
-    </dependencies>
 
 </project>

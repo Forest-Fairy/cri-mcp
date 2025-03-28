@@ -1,4 +1,4 @@
-package org.agentpower.mcp.spec;
+package org.agentpower.mcp.cri.api.client.server;
 
 public class CriMcsRequest {
     /** mcp-server url */

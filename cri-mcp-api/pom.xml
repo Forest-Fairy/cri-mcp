@@ -17,9 +17,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>io.modelcontextprotocol.sdk</groupId>
-            <artifactId>mcp</artifactId>
-            <version>${mcp.version}</version>
+            <groupId>org.agentpower</groupId>
+            <artifactId>cri-mcp-common</artifactId>
         </dependency>
     </dependencies>
 

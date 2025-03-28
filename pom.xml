@@ -10,7 +10,9 @@
     <packaging>pom</packaging>
     <modules>
         <module>cri-mcp-server</module>
-        <module>cri-mcp-ui</module>
+        <module>cri-mcp-client-ui</module>
+        <module>cri-mcp-client-server</module>
+        <module>cri-mcp-common</module>
     </modules>
     <description>Client Responsibility Isolation(A MCP Application Architecture)</description>
 
@@ -24,5 +26,35 @@
         <mcp.version>0.8.1</mcp.version>
         <revision>${mcp.version}</revision>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.agentpower</groupId>
+                <artifactId>cri-mcp-api</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.agentpower</groupId>
+                <artifactId>cri-mcp-common</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.modelcontextprotocol.sdk</groupId>
+                <artifactId>mcp</artifactId>
+                <version>${mcp.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.projectreactor</groupId>
+            <artifactId>reactor-bom</artifactId>
+            <version>2024.0.0</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
 
 </project>
