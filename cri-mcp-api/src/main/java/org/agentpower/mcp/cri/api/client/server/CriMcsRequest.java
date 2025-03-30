@@ -1,6 +1,8 @@
 package org.agentpower.mcp.cri.api.client.server;
 
 public class CriMcsRequest {
+    /** id */
+    public final String requestId;
     /** mcp-server url */
     public final String msUrl;
     /** headers */
@@ -9,7 +11,8 @@ public class CriMcsRequest {
     public final String body;
     public final Callback callback;
 
-    public CriMcsRequest(String msUrl, String headers, String body, Callback callback) {
+    public CriMcsRequest(String requestId, String msUrl, String headers, String body, Callback callback) {
+        this.requestId = requestId;
         this.msUrl = msUrl;
         this.headers = headers;
         this.body = body;
@@ -23,10 +26,15 @@ public class CriMcsRequest {
     }
 
     public static class RequestBuilder {
+        private String requestId;
         private String msUrl;
         private String headers;
         private String body;
         private Callback callback;
+        public RequestBuilder requestId(String requestId) {
+            this.requestId = requestId;
+            return this;
+        }
         public RequestBuilder msUrl(String msUrl) {
             this.msUrl = msUrl;
             return this;

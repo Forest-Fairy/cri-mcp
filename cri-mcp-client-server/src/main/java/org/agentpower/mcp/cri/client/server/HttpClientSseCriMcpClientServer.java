@@ -9,6 +9,9 @@ public class HttpClientSseCriMcpClientServer implements CriMcpClientServer<CriMc
     public HttpClientSseCriMcpClientServer() {
 
     }
+
+
+    
     @Override
     public CriMcsResponse send(CriMcsRequest criMcsRequest) {
         criMcsRequest

@@ -19,10 +19,6 @@
             <groupId>org.agentpower</groupId>
             <artifactId>cri-mcp-api</artifactId>
         </dependency>
-        <dependency>
-            <groupId>io.modelcontextprotocol.sdk</groupId>
-            <artifactId>mcp</artifactId>
-        </dependency>
     </dependencies>
 
 </project>
