@@ -4,6 +4,8 @@ package org.agentpower.mcp.cri.api.client.ui;
  * information of the mcp-server
  */
 public interface CriMcpServerInfo {
+    String messageEndpoint();
+
     /**
      * the encryption information
      *  which the mcp-server requires to encrypt the recognition token

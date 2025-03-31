@@ -51,20 +51,20 @@ public class CriMcsRequest {
             return new CallbackBuilder(this);
         }
         public CriMcsRequest build() {
-            return new CriMcsRequest(msUrl, headers, body, callback);
+            return new CriMcsRequest(requestId, msUrl, headers, body, callback);
         }
 
     }
     public static class CallbackBuilder {
         private final RequestBuilder requestBuilder;
-        private String url;
+        private String uri;
         private String headers;
         public CallbackBuilder(RequestBuilder requestBuilder) {
             this.requestBuilder = requestBuilder;
         }
 
-        public CallbackBuilder url(String url) {
-            this.url = url;
+        public CallbackBuilder uri(String uri) {
+            this.uri = uri;
             return this;
         }
         public CallbackBuilder headers(String headers) {
@@ -72,7 +72,7 @@ public class CriMcsRequest {
             return this;
         }
         public RequestBuilder build() {
-            requestBuilder.callback = new Callback(url, headers);
+            requestBuilder.callback = new Callback(uri, headers);
             return requestBuilder;
         }
     }

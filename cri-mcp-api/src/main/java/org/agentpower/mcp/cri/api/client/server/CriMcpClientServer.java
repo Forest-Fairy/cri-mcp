@@ -1,6 +1,7 @@
 package org.agentpower.mcp.cri.api.client.server;
 
 
+import io.modelcontextprotocol.spec.McpClientTransport;
 import org.agentpower.mcp.cri.api.CriMcpTransporter;
 
 /**
@@ -9,7 +10,9 @@ import org.agentpower.mcp.cri.api.CriMcpTransporter;
  * @param <Request> the request type extends {@link CriMcsRequest}
  * @param <Response> the response type
  */
-public interface CriMcpClientServer<Request extends CriMcsRequest, Response> extends CriMcpTransporter<Request, Response> {
+public interface CriMcpClientServer<Request extends CriMcsRequest, Response> extends CriMcpTransporter<Request, Response>, McpClientTransport {
     @Override
-    Response send(Request criMcsRequest);
+    default Response send(Request criMcsRequest) {
+        return null;
+    }
 }
