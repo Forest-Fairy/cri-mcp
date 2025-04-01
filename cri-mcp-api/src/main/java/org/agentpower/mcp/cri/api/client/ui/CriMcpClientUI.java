@@ -1,13 +1,15 @@
 package org.agentpower.mcp.cri.api.client.ui;
 
-import org.agentpower.mcp.cri.api.CriMcpTransporter;
+import org.agentpower.mcp.cri.api.client.server.CriMcsRequest;
+import reactor.core.publisher.Mono;
 
 /**
  * MCUI interface
- *  it has two implementations for MCS and MS
- * @param <Request> the request type from MCS or MS
- * @param <Response> the response type to MCS or MS
+ *  sending a request to mcp-server
+ *  and sending the response with callback request to mcp-client-server
  */
-public interface CriMcpClientUI<Request, Response> extends CriMcpTransporter<Request, Response> {
-    CriMcpServerInfo getServerInfo();
+public interface CriMcpClientUI {
+    Mono<Void> sendRequest(CriMcsRequest request);
+    Mono<Void> sendCallback(CriMcsRequest request);
+    Mono<Void> closeGracefully();
 }

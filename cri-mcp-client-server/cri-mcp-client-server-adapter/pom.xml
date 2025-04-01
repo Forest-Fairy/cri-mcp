@@ -5,25 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.agentpower</groupId>
-        <artifactId>cri-mcp</artifactId>
+        <artifactId>cri-mcp-client-server</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>cri-mcp-server</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>cri-mcp-server-implementation</module>
-        <module>cri-mcp-server-adapter</module>
-    </modules>
+    <artifactId>cri-mcp-client-server-adapter</artifactId>
 
     <properties>
     </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.agentpower</groupId>
-            <artifactId>cri-mcp-api</artifactId>
-        </dependency>
-    </dependencies>
 
 </project>

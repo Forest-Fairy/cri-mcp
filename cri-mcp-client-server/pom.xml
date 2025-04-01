@@ -10,6 +10,11 @@
     </parent>
 
     <artifactId>cri-mcp-client-server</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>cri-mcp-client-server-implementation</module>
+        <module>cri-mcp-client-server-adapter</module>
+    </modules>
 
     <properties>
     </properties>

@@ -1,14 +1,26 @@
 package org.agentpower.mcp.cri.api.server;
 
-import org.agentpower.mcp.cri.api.CriMcpTransporter;
+import io.modelcontextprotocol.spec.McpServerTransport;
+import org.agentpower.mcp.cri.api.spec.CriMcpServerInfo;
+
+import java.util.Map;
 
 /**
  * mcp server interface
  *  it receive the request defined by self but return a standard response defined by cri-mcp
- * @param <Request> the request type
- * @param <Response> the response type extends {@link CriMCUIResponse}
  */
-public interface CriMcpServer<Request, Response extends CriMCUIResponse> extends CriMcpTransporter<Request, Response> {
-    @Override
-    Response send(Request request);
+public interface CriMcpServer {
+    /**
+     * the mcp-server information that contains:
+     *      endpoint path for handling client messages,
+     *      requirements of token's encryption,
+     *      requirements of parameters' encryption,
+     *      requirements of data's decryption
+     */
+    CriMcpServerInfo getServerInfo();
+
+
+    String decodeRequestBodyToJson(String encodedRequestBody);
+
+    String encodeMessageJsonToString(Map<String, String> headers, String jsonText);
 }

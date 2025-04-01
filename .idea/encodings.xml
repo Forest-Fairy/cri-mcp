@@ -3,12 +3,24 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/cri-mcp-api/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cri-mcp-api/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cri-mcp-client-server/cri-mcp-client-server-adapter/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cri-mcp-client-server/cri-mcp-client-server-adapter/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cri-mcp-client-server/cri-mcp-client-server-implementation/cri-mcp-client-server-mvc-impl/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cri-mcp-client-server/cri-mcp-client-server-implementation/cri-mcp-client-server-mvc-impl/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cri-mcp-client-server/cri-mcp-client-server-implementation/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cri-mcp-client-server/cri-mcp-client-server-implementation/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cri-mcp-client-server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cri-mcp-client-server/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cri-mcp-client-ui/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cri-mcp-client-ui/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cri-mcp-common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cri-mcp-common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cri-mcp-server/cri-mcp-server-adapter/cri-mcp-server-adapter-http-servlet/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cri-mcp-server/cri-mcp-server-adapter/cri-mcp-server-adapter-http-servlet/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cri-mcp-server/cri-mcp-server-adapter/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cri-mcp-server/cri-mcp-server-adapter/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cri-mcp-server/cri-mcp-server-implementation/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cri-mcp-server/cri-mcp-server-implementation/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cri-mcp-server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cri-mcp-server/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />

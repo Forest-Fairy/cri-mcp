@@ -47,7 +47,7 @@ public class CriMcsRequest {
             this.body = body;
             return this;
         }
-        public CallbackBuilder buildCallback() {
+        public CallbackBuilder callbackBuilder() {
             return new CallbackBuilder(this);
         }
         public CriMcsRequest build() {
@@ -71,7 +71,7 @@ public class CriMcsRequest {
             this.headers = headers;
             return this;
         }
-        public RequestBuilder build() {
+        public RequestBuilder buildCallback() {
             requestBuilder.callback = new Callback(uri, headers);
             return requestBuilder;
         }
