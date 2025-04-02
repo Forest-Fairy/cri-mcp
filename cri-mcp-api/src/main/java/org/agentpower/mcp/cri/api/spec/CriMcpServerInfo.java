@@ -13,6 +13,10 @@ public record CriMcpServerInfo(
         @JsonProperty ParamCodecInfo paramCodec,
         @JsonProperty DataCodecInfo dataCodec
 ) {
+    public static CriMcpServerInfo onlyEndpoint(String messageEndpoint) {
+        return new CriMcpServerInfo(messageEndpoint, null, null, null);
+    }
+
     /**
      * the encryption information
      *  which the mcp-server requires to encrypt the recognition token

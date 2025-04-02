@@ -9,7 +9,7 @@ import reactor.core.publisher.Mono;
  *  and sending the response with callback request to mcp-client-server
  */
 public interface CriMcpClientUI {
-    Mono<Void> sendRequest(CriMcsRequest request);
-    Mono<Void> sendCallback(CriMcsRequest request);
+    Mono<Void> sendRequestToMcpServer(CriMcsRequest request);
+    Mono<Void> sendCallbackToClientServer(CriMcsRequest request);
     Mono<Void> closeGracefully();
 }

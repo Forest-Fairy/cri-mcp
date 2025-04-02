@@ -40,7 +40,6 @@ public class CriMcpClientServerTransport implements McpClientTransport {
     private final String baseUrl;
     private final String defaultJsonHeaders;
     private final CriMcpClientServer clientServer;
-    private final CountDownLatch count;
     private boolean isClosing;
 
     public CriMcpClientServerTransport(
@@ -62,7 +61,6 @@ public class CriMcpClientServerTransport implements McpClientTransport {
         this.baseUrl = baseUrl;
         this.defaultJsonHeaders = defaultJsonHeaders;
         this.clientServer = clientServer;
-        this.count = new CountDownLatch(1);
         this.isClosing = false;
     }
 
@@ -74,26 +72,10 @@ public class CriMcpClientServerTransport implements McpClientTransport {
                 .headers(defaultJsonHeaders)
                 .body(CriMcpCommonEvents.ENDPOINT_EVENT_TYPE)
                 .callbackBuilder()
-                .uri(clientServer.getCallbackUri())
+                .uri(clientServer.getCallbackUri(id))
                 .headers(clientServer.getCallbackHeader(id)).buildCallback()
                 .build();
         sendMessage(request);
-        CompletableFuture.runAsync(() -> {
-            while (true) {
-                if (Optional.ofNullable(clientServer.getServerInfo(id))
-                        .isPresent()) {
-                    count.countDown();
-                    return;
-                }
-                if (Thread.currentThread().isInterrupted()) {
-                    return;
-                }
-                if (isClosing) {
-                    return;
-                }
-            }
-        }).completeOnTimeout(null, endpointTimeoutSec, TimeUnit.SECONDS)
-        .whenComplete((__, ex) -> logger.error("Failed to wait for the message endpoint", ex));
         return clientServer.acceptMessageHandler(id, handler);
     }
 
@@ -106,12 +88,9 @@ public class CriMcpClientServerTransport implements McpClientTransport {
     @Override
     public Mono<Void> sendMessage(McpSchema.JSONRPCMessage message) {
         return Mono.fromRunnable(() -> {
-            CriMcpServerInfo serverInfo = clientServer.getServerInfo(id);
-            try {
-                while (! count.await(endpointTimeoutSec, TimeUnit.SECONDS)) {
-                    Thread.sleep(100L);
-                }
-            } catch (InterruptedException e) {
+            CriMcpServerInfo serverInfo = clientServer.getServerInfo(
+                    id, endpointTimeoutSec * 1000L);
+            if (serverInfo == null) {
                 throw new McpError("Failed to wait for the message endpoint");
             }
             try {
@@ -127,9 +106,8 @@ public class CriMcpClientServerTransport implements McpClientTransport {
                         .body(clientServer
                                 .processRequestBody(id, jsonText, serverInfo))
                         .callbackBuilder()
-                        .uri(callbackUri)
-                        .headers(clientServer
-                                .processCallbackHeader(id, callbackHeaders))
+                        .uri(clientServer.getCallbackUri(id))
+                        .headers(clientServer.getCallbackHeader(id))
                         .buildCallback()
                         .build();
                 sendMessage(request);

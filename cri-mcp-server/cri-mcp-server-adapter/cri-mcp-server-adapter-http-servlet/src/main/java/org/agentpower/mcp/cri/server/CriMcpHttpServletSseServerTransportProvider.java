@@ -253,7 +253,7 @@ public class CriMcpHttpServletSseServerTransportProvider extends HttpServlet imp
      */
     private void sendEvent(String sessionId, PrintWriter writer, String eventType, String data) throws IOException {
         if (sessionId.startsWith(CRI_SID_PREFIX) && ! eventType.equals(ENDPOINT_EVENT_TYPE)) {
-            data = server.encodeMessageJsonToString(sessionHeaders.get(sessionId), data);
+            data = server.encodeMessageJsonToString(sessionHeaders.computeIfAbsent(sessionId, key -> Map.of()), data);
         }
         writer.write("event: " + eventType + "\n");
         writer.write("data: " + data + "\n\n");

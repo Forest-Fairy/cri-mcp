@@ -9,11 +9,9 @@
         <version>${revision}</version>
     </parent>
 
-    <artifactId>cri-mcp-client-server-mvc-impl</artifactId>
+    <artifactId>cri-mcp-client-server-http-impl</artifactId>
 
     <properties>
     </properties>
-    <dependencies>
-    </dependencies>
 
 </project>

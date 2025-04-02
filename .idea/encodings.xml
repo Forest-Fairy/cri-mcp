@@ -5,6 +5,8 @@
     <file url="file://$PROJECT_DIR$/cri-mcp-api/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cri-mcp-client-server/cri-mcp-client-server-adapter/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cri-mcp-client-server/cri-mcp-client-server-adapter/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cri-mcp-client-server/cri-mcp-client-server-implementation/cri-mcp-client-server-http-impl/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cri-mcp-client-server/cri-mcp-client-server-implementation/cri-mcp-client-server-http-impl/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cri-mcp-client-server/cri-mcp-client-server-implementation/cri-mcp-client-server-mvc-impl/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cri-mcp-client-server/cri-mcp-client-server-implementation/cri-mcp-client-server-mvc-impl/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cri-mcp-client-server/cri-mcp-client-server-implementation/src/main/java" charset="UTF-8" />
