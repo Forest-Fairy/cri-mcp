@@ -12,6 +12,10 @@ import java.util.function.Function;
  *  it handles the messages with client transport
  */
 public interface CriMcpClientServer {
+    /**
+     * generate a transport id for transport and some initial variables
+     * @return uuid
+     */
     String generateTransportId();
     String getCallbackUri(String transportId);
     String getCallbackHeader(String transportId);

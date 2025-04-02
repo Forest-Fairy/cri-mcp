@@ -16,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import reactor.core.publisher.Mono;
 import reactor.util.function.Tuple2;
+import reactor.util.function.Tuple3;
 import reactor.util.function.Tuple4;
 import reactor.util.function.Tuples;
 
@@ -29,6 +30,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class CriMcsFilter implements CriMcpClientServer, Filter {
     private static final Logger logger = LoggerFactory.getLogger(CriMcsFilter.class);
@@ -161,7 +163,21 @@ public class CriMcsFilter implements CriMcpClientServer, Filter {
     @Override
     public String getCallbackHeader(String transportId) {
         // TODO get callback header
-        return null;
+        Map<String, String> headers = Optional.ofNullable(TRANSPORT_CONTAINER.get(transportId))
+                .map(Tuple4::getT4)
+                .map(resp -> Optional.ofNullable(resp.getHeaderNames())
+                        .stream()
+                        .flatMap(Collection::stream)
+                        .collect(Collectors.toMap(
+                                header -> header,
+                                header -> String.join(",", resp.getHeaders(header)),
+                                (v1, v2) -> v2)))
+                .orElse(Map.of());
+        try {
+            return objectMapper.writeValueAsString(headers);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
