@@ -1,17 +1,19 @@
 package org.agentpower.mcp.cri.api.client.server;
 
+import java.util.Map;
+
 public class CriMcsRequest {
     /** id */
     public final String requestId;
-    /** mcp-server url */
+    /** mcp-server uri */
     public final String msUrl;
     /** headers */
-    public final String headers;
+    public final Map<String, String> headers;
     /** body: maybe is encrypted */
     public final String body;
     public final Callback callback;
 
-    public CriMcsRequest(String requestId, String msUrl, String headers, String body, Callback callback) {
+    public CriMcsRequest(String requestId, String msUrl, Map<String, String> headers, String body, Callback callback) {
         this.requestId = requestId;
         this.msUrl = msUrl;
         this.headers = headers;
@@ -19,7 +21,7 @@ public class CriMcsRequest {
         this.callback = callback;
     }
 
-    public record Callback(String url, String headers) { }
+    public record Callback(String callbackUri, Map<String, String> headers) { }
 
     public static RequestBuilder builder() {
         return new RequestBuilder();
@@ -28,7 +30,7 @@ public class CriMcsRequest {
     public static class RequestBuilder {
         private String requestId;
         private String msUrl;
-        private String headers;
+        private Map<String, String> headers;
         private String body;
         private Callback callback;
         public RequestBuilder requestId(String requestId) {
@@ -39,7 +41,7 @@ public class CriMcsRequest {
             this.msUrl = msUrl;
             return this;
         }
-        public RequestBuilder headers(String headers) {
+        public RequestBuilder headers(Map<String, String> headers) {
             this.headers = headers;
             return this;
         }
@@ -57,22 +59,22 @@ public class CriMcsRequest {
     }
     public static class CallbackBuilder {
         private final RequestBuilder requestBuilder;
-        private String uri;
-        private String headers;
+        private String callbackUri;
+        private Map<String, String> headers;
         public CallbackBuilder(RequestBuilder requestBuilder) {
             this.requestBuilder = requestBuilder;
         }
 
         public CallbackBuilder uri(String uri) {
-            this.uri = uri;
+            this.callbackUri = uri;
             return this;
         }
-        public CallbackBuilder headers(String headers) {
+        public CallbackBuilder headers(Map<String, String> headers) {
             this.headers = headers;
             return this;
         }
         public RequestBuilder buildCallback() {
-            requestBuilder.callback = new Callback(uri, headers);
+            requestBuilder.callback = new Callback(callbackUri, headers);
             return requestBuilder;
         }
     }

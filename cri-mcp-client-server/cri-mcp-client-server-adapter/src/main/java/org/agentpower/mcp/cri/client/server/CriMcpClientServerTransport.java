@@ -38,12 +38,12 @@ public class CriMcpClientServerTransport implements McpClientTransport {
     private final long endpointTimeoutSec;
     private final long messageTimeoutSec;
     private final String baseUrl;
-    private final String defaultJsonHeaders;
+    private final Map<String, String> defaultJsonHeaders;
     private final CriMcpClientServer clientServer;
     private boolean isClosing;
 
     public CriMcpClientServerTransport(
-            ObjectMapper objectMapper, String transportId, String baseUrl, String defaultJsonHeaders,
+            ObjectMapper objectMapper, String transportId, String baseUrl, Map<String, String> defaultJsonHeaders,
             CriMcpClientServer clientServer) {
         this(objectMapper, DEFAULT_SSE_ENDPOINT,
                 DEFAULT_ENDPOINT_TIMEOUT_SECONDS, DEFAULT_MESSAGE_TIMEOUT_SECONDS, transportId,
@@ -51,7 +51,7 @@ public class CriMcpClientServerTransport implements McpClientTransport {
     }
     public CriMcpClientServerTransport(
             ObjectMapper objectMapper, String endpoint, long endpointTimeoutSec, long messageTimeoutSec,
-            String transportId, String baseUrl, String defaultJsonHeaders,
+            String transportId, String baseUrl, Map<String, String> defaultJsonHeaders,
             CriMcpClientServer clientServer) {
         this.objectMapper = objectMapper;
         this.id = transportId;

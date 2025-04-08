@@ -8,6 +8,11 @@
         <option value="$PROJECT_DIR$/cri-mcp-api/pom.xml" />
       </list>
     </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/cri-mcp-client-server/cri-mcp-client-server-implementation/cri-mcp-client-server-mvc-impl/pom.xml" />
+      </set>
+    </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_17" project-jdk-name="17" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />

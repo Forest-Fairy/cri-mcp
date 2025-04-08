@@ -12,8 +12,7 @@
     <artifactId>cri-mcp-client-server-implementation</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>cri-mcp-client-server-http-impl</module>
-        <module>cri-mcp-client-server-mvc-impl</module>
+        <module>cri-mcp-client-server-web-filter-impl</module>
     </modules>
 
     <properties>

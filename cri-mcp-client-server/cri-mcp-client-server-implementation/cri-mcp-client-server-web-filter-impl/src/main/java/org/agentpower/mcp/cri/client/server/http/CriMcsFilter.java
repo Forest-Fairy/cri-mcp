@@ -34,7 +34,8 @@ import java.util.stream.Collectors;
 
 public class CriMcsFilter implements CriMcpClientServer, Filter {
     private static final Logger logger = LoggerFactory.getLogger(CriMcsFilter.class);
-    private static final String HEADER_TRANSPORT_ID = "transport-id";
+    public static final String HEADER_TRANSPORT_ID = "transport-id";
+    public static final String PARAM_TRANSPORT_ID = "tid";
     private final ObjectMapper objectMapper;
     private final Set<String> promptUris;
     private final String callbackUri;
@@ -161,9 +162,9 @@ public class CriMcsFilter implements CriMcpClientServer, Filter {
     }
 
     @Override
-    public String getCallbackHeader(String transportId) {
+    public Map<String, String> getCallbackHeader(String transportId) {
         // TODO get callback header
-        Map<String, String> headers = Optional.ofNullable(TRANSPORT_CONTAINER.get(transportId))
+        return Optional.ofNullable(TRANSPORT_CONTAINER.get(transportId))
                 .map(Tuple4::getT4)
                 .map(resp -> Optional.ofNullable(resp.getHeaderNames())
                         .stream()
@@ -173,11 +174,6 @@ public class CriMcsFilter implements CriMcpClientServer, Filter {
                                 header -> String.join(",", resp.getHeaders(header)),
                                 (v1, v2) -> v2)))
                 .orElse(Map.of());
-        try {
-            return objectMapper.writeValueAsString(headers);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     @Override
@@ -216,7 +212,7 @@ public class CriMcsFilter implements CriMcpClientServer, Filter {
     }
 
     @Override
-    public String processRequestHeader(String transportId, String defaultRequestHeader, CriMcpServerInfo criMcpServerInfo) {
+    public Map<String, String> processRequestHeader(String transportId, Map<String, String> defaultRequestHeader, CriMcpServerInfo criMcpServerInfo) {
         // TODO process
         return defaultRequestHeader;
     }
@@ -284,30 +280,14 @@ public class CriMcsFilter implements CriMcpClientServer, Filter {
     }
 
     protected String getTidFromParameter(HttpServletRequest request) {
-        String value = request.getParameter("tid");
+        String value = request.getParameter(PARAM_TRANSPORT_ID);
         if (value == null) {
             return "";
         }
         return value.trim();
     }
 
-    protected String randomTransportId() {
-        return UUID.randomUUID().toString();
-    }
-
-    private boolean isEncoded(String data) {
-        String trim = data.trim();
-        return ! trim.startsWith("{") && ! trim.startsWith("[");
-    }
-
-    private boolean isBlankString(String s) {
-        return s == null || s.trim()
-                .replace("\n", "")
-                .replace("\r", "")
-                .isEmpty();
-    }
-
-    private void sendEvent(PrintWriter writer, String eventType, String data) throws IOException {
+    protected final void sendEvent(PrintWriter writer, String eventType, String data) throws IOException {
         writer.write("event: " + eventType + "\n");
         writer.write("data: " + data + "\n\n");
         writer.flush();
@@ -316,17 +296,17 @@ public class CriMcsFilter implements CriMcpClientServer, Filter {
         }
     }
 
-    private void finishResponse(HttpServletResponse response) {
+    protected final void finishResponse(HttpServletResponse response) {
         response.setStatus(HttpServletResponse.SC_OK);
     }
 
-    private void badRequestResponse(HttpServletResponse response, String message) throws IOException {
+    protected final void badRequestResponse(HttpServletResponse response, String message) throws IOException {
         response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         PrintWriter writer = response.getWriter();
         writer.write(objectMapper.writeValueAsString(new McpError(message)));
         writer.flush();
     }
-    private void internalErrorResponse(HttpServletResponse response, Exception e) throws IOException {
+    protected final void internalErrorResponse(HttpServletResponse response, Exception e) throws IOException {
         response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         PrintWriter writer = response.getWriter();
         e.printStackTrace(writer);
@@ -352,5 +332,21 @@ public class CriMcsFilter implements CriMcpClientServer, Filter {
             } catch (InterruptedException ignored) {}
             return reference.get();
         }
+    }
+
+    protected static String randomTransportId() {
+        return UUID.randomUUID().toString();
+    }
+
+    protected static boolean isEncoded(String data) {
+        String trim = data.trim();
+        return ! trim.startsWith("{") && ! trim.startsWith("[");
+    }
+
+    protected static boolean isBlankString(String s) {
+        return s == null || s.trim()
+                .replace("\n", "")
+                .replace("\r", "")
+                .isEmpty();
     }
 }
