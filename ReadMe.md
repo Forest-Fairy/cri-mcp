@@ -1,3 +1,6 @@
+# 已过期-Deprecated
+## 正在研究基于MCP-SDK实现的Agent-Mcp(I am working with agent-mcp based on MCP-SDK)
+
 # 客户端责任隔离制(Client Responsibility Isolation)
     这是一种基于MCP设计的应用架构，它帮助安全的构建MCP客户端和MCP服务端。
     An application architecture based on MCP that helps to securely building the MCP client and the MCP server.
